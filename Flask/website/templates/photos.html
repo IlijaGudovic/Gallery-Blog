@@ -1,0 +1,62 @@
+{% extends "profile.html" %}
+
+{%block select%}
+
+{{selected.name}}
+
+{%endblock%}
+
+{% block content %}
+
+<div class="photos">
+
+    <!-- positioning photos -->
+    {% if count > 2 %}
+
+    <div class="box">
+
+        {% for i in range(0, size)%}
+
+        <div class="image-box">
+            <img src="data:image/png;base64,{{images[i]}}">
+            <p class="image-description">{{titels[i]}}</p>
+        </div>
+
+        {%endfor%}
+
+    </div>
+
+    <div class="box">
+
+        {% for i in range(size, 2 * size)%}
+    
+        <div class="image-box">
+            <img src="data:image/png;base64,{{images[i]}}">
+            <p class="image-description">{{titels[i]}}</p>
+        </div>
+    
+        {%endfor%}
+    
+    </div>
+
+    {% endif %}
+
+    <div class="box">
+
+        {% for i in range(2 * size, count)%}
+    
+        <div class="image-box">
+            <img src="data:image/png;base64,{{images[i]}}">
+            <p class="image-description">{{titels[i]}}</p>
+        </div>
+    
+        {%endfor%}
+    
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+<!-- <li><img src="data:image/png;base64,{{image}}"></li>    -->

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwii</title>
+
+    <style>
+
+        .navbar
+        {
+            margin: 0;
+            padding: 0;
+
+            display: inline-block;
+        }
+
+        .navbar li
+        {
+            list-style-type: none;
+
+            display: inline-block;
+            padding-right: 12px;
+        }
+
+        .navbar li a
+        {
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <ul class="navbar">
+
+        <li><a href="/home">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/register">Register</a></li>
+
+    </ul>
+
+    {% with messages = get_flashed_messages() %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>alert('{{message}}')</script>
+        {% endfor %}
+    {% endif %}
+
+    {% endwith %}
+
+    <br> <br>
+
+    <form method="post">
+
+        <label for="username">Email Adresss</label>
+        <input type="text" id = "username" name = "username" placeholder="Enter email...">
+
+        <label for="password">Password</label>
+        <input type="text" id = "password" name = "password" placeholder="Enter pass...">
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .photos
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        } 
+
+        .photos .box
+        {
+            display: flex;
+            flex-direction: column;
+            width: 32%;
+        }
+
+        .photos .box img
+        {
+            margin-bottom: 1vw;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .navbar
+        {
+            margin: 0;
+            padding: 0;
+
+            display: inline-block;
+        }
+
+        .navbar li
+        {
+            list-style-type: none;
+            display: inline-block;
+            padding-right: 12px;
+        }
+
+        .navbar li a, .section li a
+        {
+            text-decoration: none;
+        }
+
+        .section li
+        {
+            list-style-type: none;
+            display: inline-block;
+
+            padding: 16px;
+        }
+
+        /* Hover Effect */
+
+        .image-box
+        {
+            display: inline-block;
+            position: relative;
+        }
+
+        .image-description
+        {
+            position: absolute;
+
+            background: rgba(255, 255, 255, 0.6);
+
+            left: 50%;
+
+            width: 90%;
+
+            bottom: 0;
+            
+            transform: translate(-50%, -5%);
+            text-align: justify;
+
+            font-size: 18pt;
+
+            transition: opacity 0.8s ease-in-out;
+            opacity: 0;
+
+            padding: 20px;
+        }
+
+        img:hover ~.image-description
+        {
+            opacity: 1;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <ul class="navbar">
+
+        <li><a href="/home">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/register">Register</a></li>
+
+    </ul>
+
+    <!-- aler message -->
+
+    {% with messages = get_flashed_messages() %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>alert('{{message}}')</script>
+        {% endfor %}
+    {% endif %}
+
+    {% endwith %}
+
+    <!-- add section -->
+
+    {% if guest.id == user.id %}
+
+    <br><br>
+
+    <form method="post">
+
+        <input type="text" name="section_name" placeholder="Enter name...">
+        <button type="submit" name="btn" value="section">add section</button>
+
+    </form>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <input type="file" name = "file">
+    
+        <br>
+        <input type="text" name="photo_description" placeholder="Enter description...">
+        <button type="submit" name="btn" value="photo">apply photo</button>
+
+    </form>
+
+    <form method="post">
+
+        <br><br>
+
+        <button type="submit" name="btn" value="delete">Delete</button>
+        <input type="text" name="delete_name" value="{%block select%}{%endblock%}" placeholder="Enter name to delete...">
+
+    </form>
+
+    {% endif %}
+
+    <h2> {{user.username}} </h2>
+
+    <ul class="section">
+
+    {% for section in sections %}
+
+        <li><a href="/profile/{{user.username}}/{{section.name}}">{{section.name}}</a></li>
+
+    {% endfor %}
+
+    </ul>
+
+    {% block content %}
+
+    {% endblock %}
+    
+  
+</body>
+</html>
