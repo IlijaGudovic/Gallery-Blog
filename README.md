@@ -1,1 +1,1 @@
-# [Gallery-Blog-Link](https://kiwii.pythonanywhere.com/)
+# [Link](https://kiwii.pythonanywhere.com/)
